@@ -1,5 +1,5 @@
 # Preface {.unnumbered}
-The notes are some stuffs related to Data Science. If you have any comments/suggetions/concerns about the notes please contact me at <xxiao@atu.edu>.
+The notes are some stuffs related to Algorithm. If you have any comments/suggetions/concerns about the notes please contact me at <xxiao@atu.edu>.
 
 
 
