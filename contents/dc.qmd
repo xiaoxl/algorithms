@@ -1,0 +1,28 @@
+# DC
+
+
+recursvie
+
+
+computation
+
+
+
+master thm
+
+
+examples
+
+
+multiplication
+
+
+
+quicksort
+
+mergesort
+
+
+median
+
+fft

@@ -42,7 +42,8 @@ book:
     - index.qmd
     - part: "DC"
       chapters: 
-        - contents/dc/dc.qmd
+        - contents/dc.qmd
+        - contents/dp.qmd
     #     - contents/pyconcepts/path.qmd
     #     - contents/pyconcepts/virtenv.qmd
     #     - contents/pyconcepts/concepts.qmd
