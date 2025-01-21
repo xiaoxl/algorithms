@@ -53,6 +53,7 @@ book:
     - index.qmd
     - part: "DC"
       chapters: 
+        - contents/intro.qmd
         - contents/base.qmd
         - contents/dc.qmd
         - contents/dp.qmd
