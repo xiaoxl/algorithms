@@ -53,6 +53,7 @@ book:
     - index.qmd
     - part: "DC"
       chapters: 
+        - contents/base.qmd
         - contents/dc.qmd
         - contents/dp.qmd
     #     - contents/pyconcepts/path.qmd

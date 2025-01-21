@@ -172,4 +172,18 @@ point: if previous max sum is negative, we would rather use only myself.
 ## Knapsack Problem
 
 
+![](assests/img/20250120184040.png)
 
+
+### no repetition
+
+K(i,b)=max value achievable using the first i objects and total weight <=b
+
+
+![](assests/img/20250120191017.png)
+
+O(nB) is not polynomial
+
+
+polynomial in the input size, and the input size of $B$ is $\log(B)$
+So 
