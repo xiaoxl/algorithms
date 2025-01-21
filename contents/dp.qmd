@@ -1,1 +1,175 @@
-# DP
+# Dynamic programming
+
+- no recursion in algorithm
+- memoization
+  - ?
+
+
+- First write it in terms of recursion
+- Then rewrite it backward from buttom to top
+- 
+
+
+![](assests/img/20250120160110.png)
+
+
+## Fibonacci numbers
+
+### Recursive algorithm
+
+
+
+
+
+`Fib1(n)`:
+
+1.  input: integer $n\geq0$
+2.  output: Fn
+3.  33
+4.  sdfas
+5.  sadfs
+6.  sdf
+7.  asdf
+8.  asdf
+9.  asdfds
+10. sdf
+11. sdfasf
+12. sadfasdf
+13. sdfsdf
+14. sdf
+
+Recursive algorithm
+
+top to buttom
+
+
+exponential
+
+
+
+
+### DP
+
+`Fib2(n)`
+
+start from small and go upwards
+
+there is a recursive formula, but it is not a recursive algorithm
+
+``` pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{Fib2}
+\begin{algorithmic}
+\Procedure{Fib2}{$n$}
+\State dsfsd
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+```
+
+
+## Longest Increasing Subsequences (LIS)
+
+Input: n numbers 
+Goal: find length of LIS
+
+subsequence vs substring
+
+- subsequence can skip elements
+
+
+how to go from L(low) to L(high)?
+keep track of the longest result with the lowest ending number
+
+
+L(i) = length of LIS which inclues $a_i$
+
+$L(i)=1+max_j\{L(j):a_j<a_i, j<i\}$
+
+
+
+induction:
+
+- key point: induction on L(i): length of LIS which inclues $a_i$
+
+
+``` pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{LIS}
+\begin{algorithmic}
+\Procedure{LIS}{$a_1,\ldots,a_n$}
+    \For{$i=1$ \To $n$}
+        \State $L(i)=1$
+            \For{$j=1$\To$i-1$}
+                \If{$a_j<a_i$ and $L(i)<1+L(j)$}
+                    \State $L(i)=1+L(j)$
+                \EndIf
+            \EndFor
+    \EndFor
+    \State $max=1$
+    \For{$i=2$ \To $n$}
+        \If{$L(i)>L(max)$}
+            \State $max=i$
+        \EndIf
+    \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+```
+
+
+
+## Longest Common Subsequence (LCS)
+
+Goal find the length of the longest string which is a subsequence of X and Y
+
+**subsequence**
+
+can skip
+
+L(i, j)=length of LCS in the first i chars and j chars respectively
+
+key point: how to do the induction step
+
+
+good way 
+
+![](assests/img/20250120155724.png)
+
+![](assests/img/20250120155701.png)
+
+
+
+
+
+
+
+## Ex 6.1
+
+Input a1,...an
+Goal: substring with max sum
+
+L(i+1) = a_i+1 + max{0, L(i)}
+point: if previous max sum is negative, we would rather use only myself.
+
+
+## Knapsack Problem
+
+
+

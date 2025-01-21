@@ -1,4 +1,5 @@
-env/
-docs/
-.quarto/
-_freeze/
+/env/
+/docs/
+/_freeze/
+/.quarto/
+/_extensions/
