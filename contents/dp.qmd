@@ -1,4 +1,10 @@
+
+{{< include math.qmd >}}
+
+
 # Dynamic programming
+
+
 
 - no recursion in algorithm
 - memoization
@@ -179,7 +185,7 @@ point: if previous max sum is negative, we would rather use only myself.
 
 K(i,b)=max value achievable using the first i objects and total weight <=b
 
-
+K(i,b)= max {no more copies of i, another copy of i} = max{K(i-1, b), Vi+K(i-1, b-wi)}
 ![](assests/img/20250120191017.png)
 
 O(nB) is not polynomial
@@ -187,3 +193,282 @@ O(nB) is not polynomial
 
 polynomial in the input size, and the input size of $B$ is $\log(B)$
 So 
+
+
+
+
+### REPETITION
+
+K(i,b) = max value using the first i objects and total weight <= b, and each objects can be used more than once
+
+K(i,b) = max {no more copies of i, another copy of i} = max{K(i-1, b), Vi+K(i, b-wi)}
+
+O(nB)
+
+in this case, i is not really useful
+
+1. new way
+
+K(b) = max value with weight <=b
+
+K(b) = max_i{Vi+K(b-wi)}
+
+``` pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{Knapsack Repeat ($w_1,\ldots,w_n,v_1,\ldots,v_n,B$)}
+\begin{algorithmic}
+\For{$b:=0 \rightarrow B$}
+    \State $K(b)=0$
+    \For{$i:=1 \rightarrow n$}
+        \If{$w_i\leq b$ and $K(b)<v_i+K(b-w_i)$}
+           \State $K(b)=v_i+K(b-w_i)$
+        \EndIf
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+```
+
+O(nK)
+
+we can add S(b) to it to keep track of the last object added.
+
+
+
+## cahin matrix multiply
+
+W: a,b, K: b,c
+
+zij=sum wik ykj:  b multiplications and b-1 additions
+
+Z has ac entries
+
+so acb multiplications, and ac(b-1) additions
+
+so cost is O(abc) since multiplication is dominating
+
+For A1,..., An matries
+
+sizes: (m0, m1), (m1, m2), ... (mn-1, mn)
+
+cost: 
+
+![](assests/img/20250126141004.png)
+
+### method 1: recursive among all splits: hard
+C(i) = min cost A1-Ai
+
+
+fix:  substrings: C(i,j)=min cost for Ai-Aj
+
+C(i,j) = min {C(i, l)+C(l,j)+mi-1mlmj for l: i to j}
+
+
+![](assests/img/20250126141723.png)
+
+
+``` pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{}
+\begin{algorithmic}
+\Procedure{ChainMultiply}{$m_0,\ldots,m_n$}
+    \For{$i:=1\rightarrow n$}
+        \State {$C(i,i=0)$}
+    \EndFor
+    \For{$s:=1\rightarrow n-1$}
+        \For{$i:=1\rightarrow n-s$}
+            \State Let $j=i+s$, $C(i,j)=\infty$
+            \For{$l:=i\rightarrow j-1$}
+                \State $cur=m_{i-1}m_lm_j+C(i,l)+C(l+1,j)$
+                \If{$C(i,j)>cur$}
+                    \State $C(i,j)=cur$
+                \EndIf
+            \EndFor
+        \EndFor
+    \EndFor
+    \Return $C(1, n)$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+```
+
+cost: O(n^3), n is the number of matries
+
+
+::: {.callout-note}
+Subproblem: first try prefix, then substrings
+:::
+
+
+
+## Exercises
+
+::: {#exr-}
+## [DPV] Problem 6.4 – Dictionary lookup
+
+You are given a string of n characters `s[1...n]`, which you believe to be a corrupted text document in which all punctuation has vanished...
+:::
+
+
+<details>
+<summary>Solution</summary>
+a. Define the entries of my table in words.
+
+    Let $C(i)=True$ if s[1,...,i] can be reconstructed as a sequence of valid words, $=False$ otherwise.
+
+b. State recurrence for entries.
+
+    - Base case: $C(0)=True$
+    - Inductive: $C(i)=True$ if $C(l-1)$ and $dict(s[l,...,i])$ are both True for some $1\leq l\leq i$, $=False$ otherwise, for $1\leq i\leq n$.
+  
+c. Runtime analysis
+    1. State the number of subproblems: $O(n)$
+    2. State the runtime for table fill: $O(n^2)$
+    3. State how the return is extracted: return $C(n)$
+    4. State the runtime of the return: $O(1)$
+<hr>
+</details>
+
+
+
+
+::: {#exr-}
+## [DPV] Problem 6.8 – Longest common substring
+
+Given two strings x = [1...n] and y = [1...m] we wish to find the length of their longest common substrings...
+:::
+
+
+<details>
+<summary>Solution</summary>
+a. Define the entries of the talbe:
+
+    Let $T(i,j)$ denote the the length of the longest substrings in x[1,...,i] and y[1,...,j] that ends in x[i] and y[j].
+
+
+b. State the recurrence of the entries:
+
+    - Base case: $T(0,0)=T(i,0)=T(0,j)=0$, for $1\leq i\leq n$ and $1\leq j\leq m$.
+    - Inductive: if $x[i]=y[j]$, then $T(i,j)=T(i-1,j-1)+1$. Otherwise $T(i,j)=0$. For $1\leq i\leq n$ and $1\leq j\leq m$.
+
+
+c. Runtime analysis
+    1. The number of subproblems: $O(mn)$
+    2. The runtime to fill the table: $O(mn)$
+    3. How to extract the final answer: $max T(i,j)$
+    4. The runtime to extract the final answer: $O(mn)$
+<hr>
+</details>
+
+::: {#exr-}
+## [DPV] Problem 6.17 – Making change I
+Given x=[x1, ..., xn] and value v, would like to know whether we can make change v using coins x1...xn.
+:::
+
+<details>
+<summary>Solution</summary>
+a. Describe the entries of the table.
+
+    Let $T(i, b)$=True if it is able to make changes of b using coins x1...xi. =False if not. 
+
+b. Compute the tables.
+
+    - base case: T(0, 0)=False
+    - inductive: T(i, b)=max {T(i-1, b), T(i,b-xi )}
+
+c. Runtime analysis:
+    1. The number of subproblems: $O(nV)$
+    2. The runtime to fill the table: $O(nV)$
+    3. The way to extract the result: $T(n, V)$
+    4. The runtime to extract the result: $O(1)$
+
+
+<hr>
+</details>
+
+
+
+::: {#exr-}
+## [DPV] Problem 6.18 – Making change II
+
+Consider the following variation on the change-making problem (Exercise 6.17): you are given denominations , ...
+:::
+
+
+<details>
+<summary>Solution</summary>
+a. Describe the entries of the table.
+
+    Let $T(i, b)$=True if it is able to make changes of b using coins x1...xi. =False if not. 
+
+b. Compute the tables.
+
+    - base case: T(0, 0)=True, T(0, v)=False for $1\leq v\leq V$
+    - inductive: T(i, b)=max {T(i-1, b), T(i-1,b-xi )} or T(i-1, b) if xi>b
+
+c. Runtime analysis:
+    1. The number of subproblems: $O(nV)$
+    2. The runtime to fill the table: $O(nV)$
+    3. The way to extract the result: $T(n, V)$
+    4. The runtime to extract the result: $O(1)$
+<hr>
+</details>
+
+
+
+::: {#exr-}
+## [DPV] Problem 6.19 – Making change k
+
+Given an unlimited supply of coins of denominations , we wish to make change for a value v using at most k coins...
+:::
+
+<details>
+<summary>Solution</summary>
+![](assests/img/20250126183927.png)
+
+<hr>
+</details>
+
+
+
+::: {#exr-}
+## [DPV] Problem 6.20 – Optimal Binary Search Tree
+
+Suppose we know the frequency with which keywords occur in programs of a certain language, for instance ...
+:::
+
+
+<details>
+<summary>Solution</summary>
+a. Let $E(i, j)$= the expected number of the subpartittion [pi,...pj]
+
+b. 
+    - base: E(i,i) = Pi, for each i
+    - inductive: E(i,j) = min{E(i,l-1)+E(l+1,j)+sum P}
+<hr>
+</details>
+
+
+::: {#exr-}
+## [DPV] Problem 6.26 – Alignment
+
+Sequence alignment. When a new gene is discovered, a standard approach to understanding its function is to look through a database of known genes and find close matches
+
+:::
+
