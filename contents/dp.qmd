@@ -461,6 +461,12 @@ a. Let $E(i, j)$= the expected number of the subpartittion [pi,...pj]
 b. 
     - base: E(i,i) = Pi, for each i
     - inductive: E(i,j) = min{E(i,l-1)+E(l+1,j)+sum P}
+
+c. 
+    - the number of subproblems: O(n^2)
+    - the runtime to fill all the table: O(n^3)
+    - the way to extract the final answer: E(1, n)
+    - the runtime to extract the final answer: O(1)
 <hr>
 </details>
 

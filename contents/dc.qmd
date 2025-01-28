@@ -1,6 +1,10 @@
 # DC
 
 
+{{< include math.qmd >}}
+
+
+
 recursvie
 
 
@@ -8,17 +12,56 @@ computation
 
 
 
-master thm
+## Master Theorem
 
 
-examples
+::: {#thm-}
+## Master Theorem
+If 
+$$
+T(n)=aT\qty(\frac nb)+O(n^d),\quad \text{for }a>0, b>1, d\geq0,
+$$
+Then
+$$
+T(n)=\begin{cases}
+O(n^d)&\text{if } d>\log_ba,\\
+O(n^d\log n)&\text{if }d=\log_ba,\\
+O(n^{\log_ba})&\text{if }d<\log_ba,\\
+\end{cases}
+$$
+:::
+::: {.solution}
 
 
-multiplication
+$$
+\begin{split}
+T(n)&\leq aT(\frac nb)+c\cdot n^d\\
+&\leq a\cdot\qty(aT(\frac n{b^2})+c\cdot \qty(\frac{n}{b})^d)+c\cdot n^d\leq a^2T(\frac n{b^2})+c\cdot n^d\qty(\frac{a}{b^d}+1)\\
+&\leq a^2\cdot(aT(\frac n{b^3})+c\cdot \qty(\frac{n}{b^2})^d)+c\cdot n^d\qty(\frac{a}{b^d}+1)\leq a^3T(\frac n{b^3})+c\cdot n^d\qty(\qty(\frac{a}{b^d})^2+\frac{a}{b^d}+1)\\
+&\leq a^kT(\frac n{b^k})+c\cdot n^d\qty(\qty(\frac{a}{b^d})^{k-1}+\ldots+\frac{a}{b^d}^{1}+1)\\
+&\leq a^kT(\frac n{b^k})+c\cdot n^d\qty(\frac{1-(\frac{a}{b^d})^k}{1-\frac{a}{b^d}}).
+\end{split}
+$$
+
+Note that $a^{\log_bn}=a^{\log_an/\log_ab}=n^{1/\log_ab}=n^{\log_ba}$.
+
+Let $k=\log_bn$. Then $\frac n{b^k}=1$, and $\qty(\frac a{b^d})^k=n^{\log_ba}/n^d$.
+
+The rest is easy.
 
 
 
+:::
 
-median
 
-fft
+
+## examples
+
+
+### multiplication
+
+### mergesort
+
+### median
+
+### fft
