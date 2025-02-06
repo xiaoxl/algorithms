@@ -4,7 +4,11 @@
 
 
 ::: {#def-}
-Let $f(n)$ and $g(n)$ be functions from positive integers to positive reals. We say $f=O(g)$ if there exists a constant $c>0$ such that $f(n)\leq c\cdot g(n)$.
+Let $f(n)$ and $g(n)$ be functions from positive integers to positive reals.
+
+- We say $f=O(g)$ if there exists a constant $c>0$ such that $f(n)\leq c\cdot g(n)$.
+- We say $f=\Omega(g)$ if $g=O(f)$.
+- We say $f=\Theta(g)$ if $f=O(g)$ and $f=\Omega(g)$.
 :::
 
 

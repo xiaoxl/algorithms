@@ -58,10 +58,60 @@ The rest is easy.
 ## examples
 
 
-### multiplication
+### Fast multiplication (Karatsuba algorithm)
+It was discovered by Anatoly Karatsuba in 1960 and published in 1962.
+
+4 operations: T(n)=4T(n/2)+O(n)->log_24>1, so n^log_24=n^2
+3 operations: T(n)=3T(n/2)+O(n)->log_23>1, so n^log_23
+
+
 
 ### mergesort
 
+
+1. merge: O(k+l)->O(n)
+2. split into 2, then mergesort/mergesort/merge, so T(n)=2T(n/2)+O(n)->Master Theorem: a=2=b^d: O(nlog n)
+
+
 ### median
 
+1. choose a good number 
+2. split it into three pieces
+3. choose the one with enough number
+4. continue
+
+T(n)= choose+O(n) +T(n/k)
+
+choose a good number:
+1. split into 5 elements
+2. sort vertical
+3. sort horizontal
+4. pick
+
+
+
+
+
 ### fft
+
+
+### find the majority element
+A majority element is the one that is more than half.
+
+- method 1:
+  - divide a list into 2, return the majority element and its count
+  - the key point is how to put them together
+  - Key point: the majority element of the big list has to be the majority element of one of the sublists
+  - after get the majority element of the sublists, count the corresponding element in the opposite list, and add the value to its count
+  - if the count is more than half, it is the majority element of the big list
+  - T(n)=2T(n/2)+O(n)
+  - O(n) since it is a count-one-element operation.
+  - Then the operation is O(log n)
+- method 2:
+  - pair elements
+  - if the pair is the same, keep one. if different, discard both
+  - if the original list has a majority, the later list will has the same majority
+  - so if the later doesn't have a majority, the original one doesn't have a majority
+  - then the main issue is when the later has a majority. all we need to do is to count its number in the original set to see whether it is the majority of the original set.
+  - So the algorithm is first propose a possibility T(n)=T(n/2)+O(n): this step is O(n). Then count its number: O(n). Together it is O(n)
+

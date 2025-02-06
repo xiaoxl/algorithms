@@ -1,6 +1,34 @@
 # base
 
+{{< include math.qmd >}}
+
 
 quicksort
 
 mergesort
+
+
+## comparision based search
+
+has a lower bound $\Omega(n\log n)$: tree argument
+
+- Each internal node in the tree represents a comparison between two elements.
+- Each leaf represents a possible final outcome (e.g., the index of the median).
+- The height of this tree represents the worst-case number of comparisons (which is time complexity).
+
+n elements, the algorithm needs to be able to distinguish all possible arrangements of the data
+the number is n!
+so there has to be n! leaves
+then the height h should be $2^h\geq n!$
+
+Stirling: $n!\sim \sqrt{2\pi n}n^n/\me^n$
+so $h=\Omega(\log n)$
+
+## comparision based sort
+it is $\Omega(n\log n)$
+
+
+## not comparision based sort
+e.g. counting sort
+
+$O(n+M)$ and it is $O(n)$ if $M=O(n)$
