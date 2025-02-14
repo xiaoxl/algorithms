@@ -57,6 +57,7 @@ book:
         - contents/base.qmd
         - contents/dc.qmd
         - contents/dp.qmd
+        - contents/gr.qmd
     #     - contents/pyconcepts/path.qmd
     #     - contents/pyconcepts/virtenv.qmd
     #     - contents/pyconcepts/concepts.qmd
@@ -77,9 +78,3 @@ book:
     collapse-level: 1
     alignment: "center"
   page-navigation: true
- 
-
-    
-
-
-
