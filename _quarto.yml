@@ -38,7 +38,7 @@ pseudocode:
 
 format:
   html:
-    theme: lumen
+    theme: cosmo
     code-block-bg: true
     code-block-border-left: true #"#31BAE9"
     # code-line-numbers: true
@@ -51,16 +51,25 @@ book:
   date: last-modified
   chapters: 
     - index.qmd
+    - part: "Base"
+      chapters:
+        - contents/base/intro.qmd
+        - contents/base/base.qmd
     - part: "DC"
       chapters: 
-        - contents/intro.qmd
-        - contents/base.qmd
-        - contents/dc.qmd
-        - contents/dp.qmd
-        - contents/gr.qmd
-    #     - contents/pyconcepts/path.qmd
-    #     - contents/pyconcepts/virtenv.qmd
-    #     - contents/pyconcepts/concepts.qmd
+        - contents/dc/dc.qmd
+    - part: "DP"
+      chapters:
+        - contents/dp/dp.qmd
+    - part: "GR"
+      chapters:
+        - contents/gr/intro.qmd
+        - contents/gr/dfs.qmd
+        - contents/gr/shortest.qmd
+        - contents/gr/mst.qmd
+    - part: "MF"
+      chapters: 
+        - contents/mf/mf1.qmd
     # - part: "Part II: R"
     #   chapters:
     #     - contents/rconcepts/r.qmd
@@ -77,4 +86,16 @@ book:
     search: true
     collapse-level: 1
     alignment: "center"
+  navbar: 
+    background: primary
+    search: true
+    left: 
+      - text: "Home"
+        href: index.qmd
+      - text: "GR"
+        menu:
+        - contents/gr/intro.qmd
+        - contents/dc/dc.qmd
   page-navigation: true
+  bread-crumbs: false
+ 

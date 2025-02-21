@@ -1,7 +1,15 @@
 # Graph algorithm
 
 
-{{< include math.qmd >}}
+{{< include ../math.qmd >}}
+
+
+- sd
+- 2-SAT
+- Bellman-Ford
+- F-W
+- Negative cycle(?)
+
 
 
 ## Data strcuture
@@ -380,7 +388,8 @@ then no wbar->sbar. so Sbar is a source.
 
 
 
-## MST
+
+
 
 ## PageRank
 

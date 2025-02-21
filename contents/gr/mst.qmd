@@ -1,0 +1,99 @@
+# GR+DP: MST
+
+
+Greedy: take locally optimal move
+
+when does that lead to global optimum?
+
+knapsack: doesn't work (greedy doesn't lead to global: has to consider all earlier setting instead of just the best one)
+mst: cut property and it would work
+
+
+
+
+## Tree
+
+Tree = connected acyclic graph
+
+1. n-vertices Tree has n-1 edges. If more than n-1 edges, there is at least one cycle.
+2. in a tree, exactly one path between every pair of vertices. (ow either cycle or not connected)
+3. Any connected G with n-1 edges is a tree.
+
+
+
+Definition
+
+::: {#def-}
+## MST
+
+- Given: undirected G with weights
+- Goal: find minimal size, connected subgraph (spanning tree) of min weights
+
+find min weight spanning tree of G
+
+:::
+
+## Greedy
+Keep adding smaller weight edges which doesn't create cycles.
+
+
+Kruskal's algorithm
+
+1. Sort E by increasing weight
+2. Set X=empty
+3. For edge in E:
+   1. if X+e doesn't create cycles: X=X+e
+4. Return X
+
+Sort: O(m log n) time
+check cycles: in the subgraph (V, X) where we consider all nodes but only edges in X.
+    - let c(v)=all points connecting to v in X
+    - let c(w)=all points connecting to w in X
+    - if c(v) != c(w) then add e to X
+  - Use union-Find data strcutre O(log n)
+  
+
+
+## Prim's algorithm
+### Cut
+![](assests/img/20250220115928.png)
+
+
+::: {#lem-}
+## Cut property
+
+![](assests/img/20250220120219.png)
+:::
+
+Greedy works: can add a edge one at a time. 
+
+add an edge that connect different connected components of X
+
+
+
+
+![](assests/img/20250220122719.png)
+
+
+
+
+## Exercise
+
+
+Practice Problems
+
+### [DPV] Problem 4.14 (Shortest path through a given vertex)
+
+### [DPV] Problems 5.1, 5.2 (Practice fundamentals of MST designs)
+
+### [DPV] Problem 5.9 (multiple statements about MST. We will provide the answer to a few, you are welcome to try them all)
+
+### Graded Problem
+
+You are given an undirected, weighted, connected graph $G=(V, E)$, and an MST $T$ of $G$. The weight of an edge $e$, which is part of $T$, is doubled. All other edges keep their original weight.
+
+Design an algorithm that outputs an MST for the graph $G$ with the new weights. Note that your new MST does not have to be distinct from $T$.
+
+Building an MST from scratch will receive little credit!
+
+

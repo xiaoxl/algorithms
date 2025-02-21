@@ -1,0 +1,108 @@
+# Shortest paths
+
+
+
+
+
+
+![](assests/img/20250219170815.png)
+
+Fix s. Define a function dist(z)=length of the shortest path from s to z
+
+## Dijkstra: given G and s, finds dist(z) for all v.
+Run BFS with weights. Take advantage of priority array. Dijkstra requires positive weights: since once a shortest path is computed, it won't compute it again. Which is not the case if there is negative path. [If all weights are positive, then we will through every edge at most once.]
+
+![](assests/img/20250219171250.png)
+
+
+
+### New problem:Given G with w. find a negative weight cycle.
+
+DP: ![](assests/img/20250219171655.png)
+
+![](assests/img/20250219171911.png)
+
+
+
+
+
+
+## Bellman-Ford algorithm
+
+
+
+Bellman-Ford(G, s, w)
+
+``` pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{Bellman-Ford}
+\begin{algorithmic}
+\Procedure{Bellman-Ford}{G,s,w}
+    \For {$z\in V$}
+        \State $D(0,z)=\infty$, $D(0, s)=0$.
+    \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+```
+
+To get all graphs into z: look at the reverse graph(this is O(n+m)) find all going out
+
+
+Use BF algorithm we can find the dist function.
+
+
+![](assests/img/20250219172915.png)
+
+check if D is decreasing.
+
+
+Bellman-Ford: O(mn)
+
+
+
+## Floyd-Warshall algorithm
+
+for all pairs
+
+If we directly run BF for all vertices, the runtime is O(n^2m). Note that m is up to n^2, so unless the graph is very sparse, the runtime is around O(n^4).
+
+![](assests/img/20250219173128.png)
+
+
+Floyd-Warshall O(n^3)
+
+D(i, s, t)=length of shortest path s->t using a subset of the first i vertices as intermediate vertices.
+
+if i is on the path, D(i,s,t)=D(i-1, s, i)+D(i-1, i, t)
+if i is not on the path, D(i,s,t)=D(i-1,s,t)
+
+
+Assuming NO negative weight cycles
+
+
+
+
+## how to detect negative weight cycles
+
+FW: diagonal is negative
+
+BF: also can do
+
+
+negative wt cycles
+
+
+
+
+
+
+

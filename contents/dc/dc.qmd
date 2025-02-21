@@ -1,7 +1,7 @@
 # DC
 
 
-{{< include math.qmd >}}
+{{< include ../math.qmd >}}
 
 
 

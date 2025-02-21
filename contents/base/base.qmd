@@ -1,6 +1,6 @@
 # base
 
-{{< include math.qmd >}}
+{{< include ../math.qmd >}}
 
 
 quicksort
