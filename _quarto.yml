@@ -70,6 +70,7 @@ book:
     - part: "MF"
       chapters: 
         - contents/mf/mf1.qmd
+        - contents/mf/ff.qmd
     # - part: "Part II: R"
     #   chapters:
     #     - contents/rconcepts/r.qmd

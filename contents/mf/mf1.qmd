@@ -1,2 +1,111 @@
 # mf
 
+![](assests/img/20250226231200.png)
+
+Goal: find a valid flow of maximum size = total flow=total out of s =total into t
+
+
+
+
+residual network
+
+![](assests/img/20250226232735.png)
+
+# Ford-Fulkerson
+
+st-path
+
+ce: capacity
+fe: flow
+
+
+
+## runtime
+
+- assume all capacities are integers
+- the flow increases by >=1 unit per round
+- if C is the size of max flow: there should be <=C rounds
+
+
+![](assests/img/20250226233053.png)
+
+- update the residual grpah: O(n)
+- find st-path: DFS or BFS: O(n+m) assume #edges is at least n-1, so there are many edges: it is bounded by m so O(m)
+- find the min capacity O(m)
+
+so update once is O(m)
+
+O(m) time per round
+
+so totally O(mC) time: psedudo-polynomial
+
+### Edmonds-Karp '72:
+O(m^2n) time better than C and no longer need integer
+
+### Orlin'13
+
+
+
+
+
+
+## min-cut theorem
+
+ff stops when there are no augmenting path in residual graph
+
+lemma: if a flow f* no augmenting path in G, then f* is max.
+
+
+a cut is a partition that s in L and t in R
+
+the capacity of a cut is the total flow from L to R
+
+min st-cut problem:
+input: flow network
+output: st-cut (L, R) with min capacity
+
+Theorem: size of max-st-flow = min capacity of a st-cut
+
+proof:
+1. any flow f, size(f)<= capacity of any cut (L, R)
+
+claim: size(f)=fout(L)-fin(L)
+proof: 
+
+$$
+\begin{split}
+f^{out}(L)-f^{in}(L)&=\sum_{\vec{vw}\in E, v\in L, w\in R}f_{vw}-\sum_{\vec{wv}\in E, v\in L, w\in R}f_{vw}\\
+&=\sum_{\vec{vw}\in E, v\in L, w\in R}f_{vw}-\sum_{\vec{wv}\in E, v\in L, w\in R}f_{vw}+\sum_{\vec{vw}\in E, v\in L, w\in L}f_{vw}-\sum_{\vec{wv}\in E, v\in L, w\in L}f_{vw}\\
+&=\sum_{v\in L}f^{out}(v)-\sum_{v\in L}f^{in}(v)
+&=f^{out}(s)+\sum_{v\in L, v\neq s}f^{out}(v)-\sum_{v\in L}f^{in}(v)=f^{out}(s)-f^{in}(s)+\sum_{v\in L, v\neq s}(f^{out}(v)-f^{in}(v))\\
+&=f^{out}(s).
+\end{split}
+$$
+
+
+f^{out}(s)=size(f)
+
+
+size(f)=foutL-finL<=foutL<=cap(L,R)
+
+
+
+
+take f* from FF alg: f* has no st-path in residual Gf* by the stop condition of ff
+
+consider the cut (L, R) where size(f*)=cap(L,R)
+
+![](assests/img/20250227000937.png)
+
+
+L = vertices reachable from s in Gf*, R=E-L
+
+know: t is not in L since no st-path
+
+
+
+
+![](assests/img/20250227001151.png)
+
+
+![![](assests/img/20250227001449.png)](assests/img/20250227001602.png)
