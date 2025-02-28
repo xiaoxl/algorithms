@@ -18,7 +18,7 @@ st-path
 ce: capacity
 fe: flow
 
-
+a "saturated path" refers to a path from the source to the sink in a flow network where every edge on that path is completely filled up to its capacity
 
 ## runtime
 
@@ -109,3 +109,10 @@ know: t is not in L since no st-path
 
 
 ![![](assests/img/20250227001449.png)](assests/img/20250227001602.png)
+
+
+# summary
+
+- Ford-Fulkerson
+- Edmonds-Karp
+- min-cut theorem

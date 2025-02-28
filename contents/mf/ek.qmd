@@ -1,0 +1,13 @@
+# ek
+
+ff: DFS or BFS assuming integer capacities
+
+ek: BFS without assumption
+
+## ek
+
+![](assests/img/20250227101012.png)
+
+![](assests/img/20250227101045.png)
+
+![](assests/img/20250227101243.png)

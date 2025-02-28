@@ -71,6 +71,7 @@ book:
       chapters: 
         - contents/mf/mf1.qmd
         - contents/mf/ff.qmd
+        - contents/mf/ek.qmd
     # - part: "Part II: R"
     #   chapters:
     #     - contents/rconcepts/r.qmd

@@ -1,3 +1,63 @@
 # DFS
 
 
+
+Depth-First Search (DFS)
+Topological Sort
+Strongly Connected Components (SCC)
+
+    - first dfs to get topological ordering
+    - apply cc based on the ordering
+
+
+
+Breadth-First Search (BFS)
+Dijkstra's
+
+
+Bellman-Ford (BF)
+Floyd-Warshall (FW)
+
+
+Kruskal's
+Prim's
+
+
+Ford-Fulkerson (FF)
+Edmonds-Karp (EK)
+
+
+2-SAT
+
+
+## DAG
+
+A directed graph has a cycle iff its dfs reveals a back edge.
+
+Every DAG has at least one source and one sink.
+
+In a DAG every edge leads to a lower post number vertex.
+
+
+
+pre number is the order when the vertex is discovered.
+post number is the order when the vertex is done exploring.
+
+
+
+Highest post number is in a source scc.
+
+
+undirected graph
+- tree edge
+- back edge 
+
+directed graph
+- tree edge
+- forward edge
+- back edge
+- cross edge
+
+
+- source: no in
+- sink: no out

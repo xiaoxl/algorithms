@@ -85,10 +85,16 @@ D(i, s, t)=length of shortest path s->t using a subset of the first i vertices a
 if i is on the path, D(i,s,t)=D(i-1, s, i)+D(i-1, i, t)
 if i is not on the path, D(i,s,t)=D(i-1,s,t)
 
+FW find any negtivate cycle
 
-Assuming NO negative weight cycles
+BF only negativate weight cycle that is reachable
+
+![](assests/img/20250227215706.png)
 
 
+<!-- Assuming NO negative weight cycles -->
+
+![](assests/img/20250227215908.png)
 
 
 ## how to detect negative weight cycles

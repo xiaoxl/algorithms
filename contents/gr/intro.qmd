@@ -393,3 +393,172 @@ then no wbar->sbar. so Sbar is a source.
 
 ## PageRank
 
+
+
+
+
+
+## Summary
+
+- DFS: undirected graph connectivity 
+- DFS: directed scc
+- topological ordering (?)
+- 2-SAT
+- shortest path
+  - Bellman-Ford
+  - Floyd-Warshall
+- MST
+  - kurskla
+  - prim
+
+
+cycle detection
+
+DAG structure" topological ordering
+
+1. DFS
+
+
+
+
+
+
+
+
+
+
+
+Per Dr. Brito's announcement, you can use this thread to discuss strategies and solutions for the below problems.
+
+[DPV] Chapter 3 (DFS, SCC). Problems 3.1-3.5, 3.7, 3.8, 3.11, 3.15, 3.16, 3.22, 3.24.
+
+[DPV] Chapter 4 (BFS, Shortest paths). Problems 4.1-4.3, 4.8, 4.11, 4.12-4.14, 4.20, 4,21.
+
+[DPV] Chapter 5 (MSTs). Problems 5.1, 5.2, 5.5, 5.6, 5,7, 5.9, 5.20, 5.22, 5.23.
+
+[DPV] Chapter 7 (Flows). Problems 7.18 parts (a) & (b), 7.19, 7.21, 7.22, 7.24(*hard)
+
+Also, here are some problems we will release sample solutions for:
+
+[DPV] Chapter 7 (Flows) - Problems 7.10, 7.17, and 7.19
+
+
+
+
+
+
+::: {#exr-}
+## 3.1
+
+
+:::
+
+
+
+
+
+
+Suggested reading
+
+Chapter 3 (Graph traversal)
+
+Instructions
+
+For the graded problems, you can use the algorithms from class as black-boxes without further explanation. They are as follows:
+
+Depth-First Search (DFS)
+Topological Sort
+Strongly Connected Components (SCC)
+Breadth-First Search (BFS)
+Dijkstra's
+Bellman-Ford (BF)
+Floyd-Warshall (FW)
+Kruskal's
+Prim's
+Ford-Fulkerson (FF)
+Edmonds-Karp (EK)
+2-SAT
+When using a black-box, make sure you clearly describe which input you are passing into it and how you use the output or take advantage of the data structures created by the algorithm. To receive full credit, your solution must:
+
+Include the description of your algorithm in words (no pseudocode!).
+
+Explain the correctness of your design.
+
+State and analyze the running time of your design (you can cite and use the running time of black-boxes without further explanations).
+
+Black boxes must be used without modification.
+
+Example: I take the input graph G, I first find the vertex with largest degree, call it v*. I take the complement of the graph G, call it G'. Run Dijkstra’s algorithm on G' with s = v* and then I get the array dist[v] of the shortest path lengths from s to every other vertex in the graph G'. I square each of these distances and return this new array.
+
+We don’t want you to go into the details of these algorithms and tinker with it, just use it as a black-box as shown with Dijkstra’s algorithm above.
+
+Practice Problems (do not turn in)
+
+[DPV] Problem 3.3 (Topological ordering example)
+
+[DPV] Problem 3.4 (SCC algorithm example)
+
+[DPV] Problem 3.5 (Reverse of graph)
+
+[DPV] Problem 3.15 (Computopia)
+
+
+
+Assigned Reading 
+
+Chapter 4 (Dijkstra's), Chapter 5 (MST)
+
+Practice Problems
+
+[DPV] Problem 4.14 (Shortest path through a given vertex)
+
+[DPV] Problems 5.1, 5.2 (Practice fundamentals of MST designs)
+
+[DPV] Problem 5.9 (multiple statements about MST. We will provide the answer to a few, you are welcome to try them all)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cut proerty
+
+cycle property
+
+
+
+
+undirected:
+- dfs for cc
+
+
+directed
+- topological ordering
+- scc: 2 dfs: first ordering, then do it again
+- 2sat: scc
+  
+mst:
+- kulskra: tree properties: always add smallest wt edge
+- prim: cut property: add smallest wt edge across cut
+
+shortest path
+- dijstra: positive weights
+- bf: starting from a single point with negative wt
+- fw: any two pairs with negative wt
+
+![](assests/img/20250227224206.png)
+
+![](assests/img/20250227224216.png)
+
+![](assests/img/20250227224225.png)
+
+![](assests/img/20250227224234.png)
