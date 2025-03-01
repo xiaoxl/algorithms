@@ -61,9 +61,8 @@ book:
     - part: "DP"
       chapters:
         - contents/dp/dp.qmd
-    - part: "GR"
+    - part: contents/gr/intro.qmd
       chapters:
-        - contents/gr/intro.qmd
         - contents/gr/dfs.qmd
         - contents/gr/shortest.qmd
         - contents/gr/mst.qmd
@@ -80,7 +79,7 @@ book:
     #     - contents/tools/re.qmd
     #     - contents/tools/docker.qmd
     # - contents/references.qmd
-  sidebar:
+  sidebar:  
     style: floating
     pinned: true
     align: center

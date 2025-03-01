@@ -1,6 +1,12 @@
 # Shortest paths
 
 
+![](assests/img/20250301114824.png)
+
+## BFS
+
+
+
 
 
 
@@ -111,4 +117,44 @@ negative wt cycles
 
 
 
+
+
+
+## BFS
+DFS: connectivity
+BFS: layers
+
+
+BFS: 
+- input: G, starting node
+- output for all v, dist(v)=min {# edges from s to v} and prev(v)
+- O(n+m)
+
+
+Dijkstra's (a version of BFS)
+- input: G, s
+- output: for all v, dist(v)=length of shortest s to v
+- using min-heap datastructure
+- O((n+m)\ln n)
+
+min-heap: priority queue: each operation here take log n time. So Dijkstra takes O((n+m) logn) time.
+
+
+
+
+
+Breadth-First Search (BFS)
+Dijkstra's
+
+
+Bellman-Ford (BF)
+Floyd-Warshall (FW)
+
+
+Kruskal's
+Prim's
+
+
+Ford-Fulkerson (FF)
+Edmonds-Karp (EK)
 

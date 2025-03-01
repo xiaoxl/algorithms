@@ -1,63 +1,373 @@
-# DFS
+# Depth-First Search (DFS)
+
+This algorithm can be used to find 
+- Connected Components
+- Topological Sort
+- Strongly Connected Components (SCC)
+
+
+## Connected Components
+
+
+## Topological Sort
+
+
+## SCC
+
+- first dfs to get topological ordering
+- apply cc based on the ordering
+
+this is Kosaraju's Algorithm (Two-pass DFS)
+
+1. Compute reverse graph $G^R$
+2. First DFS on $G^R$ to get postorder. Highest postnumber is in a source of $G^R$, so it is in a sink of $G$.
+3. Process nodes in decreasing order of their postnumber from Step 2 to run DFS on the original graph $G$. Record ccnum.
 
 
 
-Depth-First Search (DFS)
-Topological Sort
-Strongly Connected Components (SCC)
 
-    - first dfs to get topological ordering
-    - apply cc based on the ordering
+## 2-SAT
 
+satisfiability 
 
-
-Breadth-First Search (BFS)
-Dijkstra's
+literals: x1-xn, x1b-xnb
+CNF: clause: OR of several literals
+formula in CNF is AND of m clauses
 
 
-Bellman-Ford (BF)
-Floyd-Warshall (FW)
+### SAT
+
+input: n var, m clauses
+output: find if there are assignments that the formula is True
 
 
-Kruskal's
-Prim's
+### k-SAT
+the size of each claues is <= k
+
+SAT is NP-complete
+k-SAT is NP-complete for k>=3
+
+but 2-SAT is P
+
+![](assests/img/20250213223641.png)
+
+first simplify the formula to be all 2
+
+create a directe graph
+
+2n vertices
+
+(a or b): abar->b, bbar->a
+
+path of implication
+
+if a->abar, it is not possible
+
+if a and abar is in scc, then the formaula cannot be satisfied.
+
+![](assests/img/20250213224430.png)
+
+- approach 1: 
+  - set the sink is true. if the complement is the source and it is automatically false, it is good.
+![](assests/img/20250213224920.png)
+- approach 2:
+  - set the source to be false. 
+- 
 
 
-Ford-Fulkerson (FF)
-Edmonds-Karp (EK)
+![](assests/img/20250213225338.png)
 
 
-2-SAT
+2SAT(f):
+1. construct graph G
+2. Take a sink SCC S
+   1. set S=T and Sbar=F
+   2. remove S and Sbar
+   3. repeat until empty
+
+O(n+m)
 
 
-## DAG
-
-A directed graph has a cycle iff its dfs reveals a back edge.
-
-Every DAG has at least one source and one sink.
-
-In a DAG every edge leads to a lower post number vertex.
+Key fact  if fall all xi and xibar are in different SCC, then S is a sink SCC <-> Sbar is a source SCC
 
 
+::: {.proof}
+claim: a->b, then bbar->abar [proof: a->b comes from (abar or b), and this clause also gives bbar->abar]
 
-pre number is the order when the vertex is discovered.
-post number is the order when the vertex is done exploring.
+Then if a,b in SCC, then abar and bbar in SCC
 
+so S is a SCC, then Sbar is a SCC
 
+Take sink SCC S: then no edges s->w
 
-Highest post number is in a source scc.
-
-
-undirected graph
-- tree edge
-- back edge 
-
-directed graph
-- tree edge
-- forward edge
-- back edge
-- cross edge
+then no wbar->sbar. so Sbar is a source.
 
 
-- source: no in
-- sink: no out
+:::
+
+
+
+how to do 2-SAT
+
+1. construct a graph
+2. run scc to find cycles from sink to source
+
+
+
+
+
+
+
+## DFS
+
+### get connected components in undirected G?
+
+
+An algorithm to explore all nods
+
+modify it when we want to do different things at each nodes
+
+explore all nods
+
+``` pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{Explore: finding all nodes reachable from a particular node}
+\begin{algorithmic}
+\Require $G=(V,E)$
+\Ensure some postconditions
+\Procedure{DFS}{G}
+    \State $cc=0$
+    \For {$v\in V$}
+        \State visited(v)=False
+    \EndFor
+    \For {$v\in V$}
+        \If {not visited u}
+            \State cc++
+            \State \Call{explotre}{v}
+        \EndIf
+    \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+```
+
+``` pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{explore}
+\begin{algorithmic}
+\Procedure{Explore}{z}
+    \State ccnum(z)=cc
+    \State visited(z)=True
+    \For {$(z,w)\in E$}
+        \If {not visited (w)}
+            \State \Call{Explore}{w}
+        \EndIf
+    \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+```
+
+This ccnum is a number to identify the connected component.
+
+
+<!-- - undirected graphs
+- directed graphs
+  - DAG = directed acyclic graph
+    - topological sorting
+  - SCC: to find SCC: with 2 DFS's -->
+
+at each nodes count the number of cc
+
+![](assests/img/20250211112048.png)
+
+
+
+Run DFS and Keep track of component #
+
+
+DFS(G):
+
+input G=(V,E) in adjacency list represenation
+output: vertices labelled by connected components
+
+![](assests/img/20250213162336.png)
+
+### pre and post order
+
+increment the clock when first visit the node (pre order)
+increment the clock when finish visiting the node (post order)
+
+we mainly use post order
+
+
+topological ordering: post order from high to low:
+
+nodes from source to sink
+
+- only back link will create link from low to high, so if no low to high link then no cycles
+
+
+### sorting
+
+- First run DFS to get post order (O(n+m))
+- then sort post order
+    - this sorting: all values are from 1 to 2n at most. So create a list and directly fill the node in the corresponding index. Then read it from right to left to get the sorting. (O(n))
+
+so the runtime to get topological sorting is O(n+m)
+
+
+### DAG:
+
+a generaal graph -> metagraph (with scc) is a DAG ->
+
+
+
+
+
+### Stringly Connected Components
+This is the counterpart of cc in directed graph
+
+scc: directed = cc : undirected
+
+![](assests/img/20250213162732.png)
+
+![](assests/img/20250213163017.png)
+
+
+DFS tree:
+
+1. a back edge means that there is b->a where b is an descendent of a
+2. i->a->b->...->i-1 all are reachable from i. so they are in the subtree from i
+
+![](assests/img/20250213170223.png)
+
+
+### directed graphs
+
+
+DAG directed acyclic graph
+
+no cycles=no back edges
+
+Run DFS on DAG G
+no back edges=all post order numbers go lower->higher
+
+so for all z->w, post(z)>post(w)
+
+
+Topological sorting: decreasing post #
+
+max post #=2n
+
+O(n+m)
+
+
+- Source: no incoming = highest post #
+- Sink: no outgoing = lowest post #
+
+
+ist one has to be a source
+
+
+alternative: find the sink and go backwards
+
+### SCC
+
+strongly connected: if v->w, w->v
+
+
+::: {#thm-}
+## Metagraph
+The metagraph of any directed graph is a DAG.
+:::
+
+::: {#thm-}
+## Source
+
+- Start from a random vertex and run DFS. The scc with the highest post order node is a source scc.
+- Start from a random vertex and run DFS. The scc with the lowest post order node MAY NOT BE a source scc (counter example). 
+:::
+::: {.proof}
+1. For S and S', if $v\in S\rightarrow w\in S'$, then max post # in S > max post # in S'.
+2. Then topologically sort by max post #
+
+
+proof of 1:
+Run DFS on G. some vertex z in S u S' visited first. 
+
+- if z in S', all w in S' will be visited and finished before we visit any v in S. So any post order # in S' will be smaller than any pre order # in S.
+- if z in S, then all nodes in S' should be finished before z. So post number of z is higher than any post number in S'.
+
+
+:::
+
+
+How to find a sink?
+
+Reverse the direction and run the above algorithm to find the source.
+
+::: {#thm-}
+The source of a G is the sink of reverse G.
+
+:::
+
+
+
+Algorithm
+1. reverse arrow
+2. run dfs and find the source scc
+3. remove it 
+4. run dfs again and find the source scc and remove
+5. 
+
+This will find scc
+![](assests/img/20250213205309.png)
+
+this is to give scc
+![](assests/img/20250213205008.png)
+
+we can get sccs in topological order
+
+
+``` pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{SCC}
+\begin{algorithmic}
+\Procedure{SCC}{G}
+    \State construct GR
+    \State DFS(GR)
+    \State Order V by post number
+    \State \Call{undirected-cc}{G}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+```
+The undirected cc algorith we just use the directly variation with identical code
+all cc is scc in this case
+
+in the code every node has a ccnum number which gives us the scc componentes.
