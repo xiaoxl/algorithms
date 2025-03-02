@@ -11,6 +11,17 @@ residual network
 
 ![](assests/img/20250226232735.png)
 
+
+![](assests/img/20250301182504.png)
+
+- Capacity: maximum amount of flow
+- Flow: actual flow
+- residual capacity: remaining capacity
+- augmenting path: a path where additional flow can be pushed
+
+
+
+
 # Ford-Fulkerson
 
 st-path
@@ -19,6 +30,32 @@ ce: capacity
 fe: flow
 
 a "saturated path" refers to a path from the source to the sink in a flow network where every edge on that path is completely filled up to its capacity
+
+idea: Concept: Find augmenting paths and push flow until no more augmenting paths exist.
+
+1. Construct the Residual Graph
+   1. The residual graph represents the remaining available capacity on each edge.
+   2. residual graph can go in both ways
+2. find an augmenting path
+   1. with either DFS or BFS
+   2. BFS can ensure finding the shortest augmenting path first
+3. augment the flow
+   1. find the bottleneck which is the minimum residual capacity along the path
+   2. increase the flow on forward edges by the amount
+   3. decrease the flow on the reverse edges
+4. update the residual graph
+   1. subtract the bottleneck cap from forward edges
+   2. add the bottleneck capacity to the reverse edges
+5. repeat until no more augmenting paths
+
+
+FF (either DFS or BFS, capacity is integers. ) O(mC) that repeat at most O(C) times
+
+EK (BFS, capacity is real) O(mmn): that repeat at most O(mn) times
+
+m: number of edges
+
+
 
 ## runtime
 

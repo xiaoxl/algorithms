@@ -1,4 +1,4 @@
-# GR+DP: MST
+# MST
 
 
 Greedy: take locally optimal move

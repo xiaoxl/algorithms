@@ -10,7 +10,6 @@
 
 
 
-
 ![](assests/img/20250219170815.png)
 
 Fix s. Define a function dist(z)=length of the shortest path from s to z
@@ -39,6 +38,11 @@ DP: ![](assests/img/20250219171655.png)
 
 Bellman-Ford(G, s, w)
 
+D(i,z) = length of shortest path from s to z using <=i edges
+
+- base: D(0,s)=0, D(0,z)=infty
+- i>=1: D(i,z)=min{D(i-1, z), min_y{D(i-1,y)+w(y,z)}}
+
 ``` pseudocode
 #| html-indent-size: "1.2em"
 #| html-comment-delimiter: "//"
@@ -52,9 +56,10 @@ Bellman-Ford(G, s, w)
 \caption{Bellman-Ford}
 \begin{algorithmic}
 \Procedure{Bellman-Ford}{G,s,w}
-    \For {$z\in V$}
-        \State $D(0,z)=\infty$, $D(0, s)=0$.
+    \For {z in V}
+        \State D(0, z) gets infty
     \EndFor
+    \State D(0, s) = 0 
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
@@ -73,6 +78,14 @@ check if D is decreasing.
 
 Bellman-Ford: O(mn)
 
+
+
+::: {.callout-note}
+1. Every round we only need to update the nodes that is coming out from the nodes that are updated from last round
+2. After $|V|-1$ round, if the weights can be updated further, there are negative weight cycles. So detecting nwc we only check row(n) and row(n-1). [And if anything changes, we could backtrack which is reduced to find the cycle.]
+:::
+
+![](assests/img/20250301175753.png)
 
 
 ## Floyd-Warshall algorithm
@@ -105,12 +118,19 @@ BF only negativate weight cycle that is reachable
 
 ## how to detect negative weight cycles
 
-FW: diagonal is negative
 
-BF: also can do
+FW: 
+
+D(n, a, a) = one round wt
 
 
-negative wt cycles
+so FW check diagonal to see whether it is negative
+
+
+::: {.callout-note}
+BF can only find negative wt cycle reachable from start s.
+:::
+
 
 
 
