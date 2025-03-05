@@ -5,9 +5,9 @@
 
 ## BFS
 
+shortest path without weights single source
 
-
-
+O(V+E)
 
 
 ![](assests/img/20250219170815.png)
@@ -18,6 +18,19 @@ Fix s. Define a function dist(z)=length of the shortest path from s to z
 Run BFS with weights. Take advantage of priority array. Dijkstra requires positive weights: since once a shortest path is computed, it won't compute it again. Which is not the case if there is negative path. [If all weights are positive, then we will through every edge at most once.]
 
 ![](assests/img/20250219171250.png)
+
+
+Shortest path with positive weights single source
+
+O((V+E)logV) with priority queue
+
+
+
+
+
+
+
+
 
 
 

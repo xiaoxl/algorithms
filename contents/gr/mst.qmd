@@ -45,13 +45,23 @@ Kruskal's algorithm
    1. if X+e doesn't create cycles: X=X+e
 4. Return X
 
-Sort: O(m log n) time
+Sort: O(m log n) time []
 check cycles: in the subgraph (V, X) where we consider all nodes but only edges in X.
     - let c(v)=all points connecting to v in X
     - let c(w)=all points connecting to w in X
     - if c(v) != c(w) then add e to X
   - Use union-Find data strcutre O(log n)
   
+
+  so whole algorithm is O(ElogE)
+
+need to be specify about how things are really made
+
+e.g. find cycle = finding the component containing v and w and see whether they are equal to each other.
+
+
+use adding vertices to keep track of connected components
+
 
 
 ## Prim's algorithm
@@ -73,6 +83,31 @@ add an edge that connect different connected components of X
 
 
 ![](assests/img/20250220122719.png)
+
+
+1. Prim's Algorithm
+Prim's algorithm starts with a single node and grows the MST by adding the nearest node to the current tree at each step. This process continues until all the nodes are included in the MST.
+
+Steps:
+
+1. Start with a single node and mark it as part of the MST.
+2. Find the minimum weight edge connecting any node in the MST to a node outside of it.
+3. Add the chosen edge and node to the MST.
+4. Repeat the process until all nodes are included in the MST.
+
+Time Complexity:
+
+- With a simple array or list for selecting the minimum edge: 𝑂(𝑉2) (where V is the number of vertices).
+- With a priority queue (min-heap): O(ElogV) (where E is the number of edges and V is the number of vertices).
+
+Space Complexity:
+
+- O(V) for storing the graph and auxiliary data structures (like the priority queue and MST).
+
+Use Case:
+
+- Best for dense graphs or graphs where you're adding edges one by one and maintaining a tree structure.
+
 
 
 
