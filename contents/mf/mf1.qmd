@@ -21,6 +21,12 @@ residual network
 
 
 
+min st-cut problem
+
+![](assests/img/20250306232138.png)
+![](assests/img/20250306232126.png)
+
+
 
 # Ford-Fulkerson
 

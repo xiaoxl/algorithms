@@ -11,6 +11,8 @@
 
 ## Adjacency list
 
+- a list of lists, indexed by vertices
+- each elemental list is the list of vertices that can be directly connected to the given vertex
 
 
 
@@ -60,7 +62,7 @@
   - `G_SCC = (V_SCC, E_SCC)`: the scc metagraph, in adjacency list format
     - the vertices is from sink to source (descreasing post number order in GR): this is called the reverse topological ordering
   - All output from the final DFS run
-    - these data is used to connect the metagraph to the orginal input graph. For example, the first vertex in V_SCC is all vertices with ccnum[v]=1. Therefore the vertices in V_SCC is 1 to k.
+    - these data is used to connect the metagraph to the orginal input graph. The ccnum is the vertex in V_SCC. For example, the first vertex in V_SCC is all vertices with ccnum[v]=1. Therefore the vertices in V_SCC is 1 to k.
   - runtime
     - O(n+m)
 
