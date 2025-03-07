@@ -1,0 +1,188 @@
+# Black box basic algorithms
+
+
+
+
+## Heap
+
+
+## Binary Search Tree
+
+
+## Adjacency list
+
+
+
+
+
+
+
+
+## Depth-First Search (DFS) 
+
+- input:
+  - A graph in adjacency list format
+  - A starting vertex:
+    - if not provided, DFS will start from a random node
+    - when DFS need to choose the next node, the choice is based on the adjacency list.
+- internal:
+  - `visited`
+- output:
+  - `ccnum[]`: connected component number, starting from 1
+  - `prev[]`: prrent vertex, is used to find the path: `prev[i]=j` means that the node `j`->`i`. 
+  - `pre[]`/`post[]`: pre and post number
+- Runtime:
+  - O(n+m)
+
+
+
+
+## Topological Sort
+
+- input:
+  - A DAG in adjacency list format
+- output:
+  - `order[]`: list of vertices in topological order from source to sink 
+    - it is indexed numerically instead nodes
+    - It is the decreasing post number order
+  - DFS output
+- Runtime:
+  - O(n+m)
+  
+
+
+
+## Strongly Connected Components (SCC) 
+
+- input:
+  - A directed graph in adjacency list
+- output:
+  - `G_SCC = (V_SCC, E_SCC)`: the scc metagraph, in adjacency list format
+    - the vertices is from sink to source (descreasing post number order in GR): this is called the reverse topological ordering
+  - All output from the final DFS run
+    - these data is used to connect the metagraph to the orginal input graph. For example, the first vertex in V_SCC is all vertices with ccnum[v]=1. Therefore the vertices in V_SCC is 1 to k.
+  - runtime
+    - O(n+m)
+
+## Breadth-First Search (BFS)
+
+- input:
+  - A graph in adjacency list 
+  - a starting vertex
+- output:
+  - `dist[]`: a list of distance from the starting vertex to the indexed vertex.
+  - `prev[]`: a list containing the parent vertex to this one
+- Runtime:
+  - O(n+m)
+
+
+
+## Dijkstra's 
+
+- input:
+  - A graph G
+  - a starting vertex
+  - a list of non-negative edge weights
+- output:
+  - `dist[]`: a list of weighted distance 
+  - `prev[]`: a list containing the parent vertex to this one
+- Runtime:
+  - O((n+m)logn)
+
+
+
+## Bellman-Ford (BF) 
+
+- input:
+  - A graph G
+  - a starting vertex
+  - a list of edge weights
+- output:
+  - `dist[]`: a list of weighted distance 
+    - the values are based on n-1 iterations (when considering a possible negative weight cycle)
+  - `prev[]`: a list containing the parent vertex to this one
+  - `iter[][]`: a 2d list of each step: iter[n][v] is the shortest distance from start to v after n iterations
+- Runtime:
+  - O(nm)
+
+
+## Floyd-Warshall (FW) 
+
+
+- input:
+  - A graph G
+  - a starting vertex
+  - a list of edge weights
+- output:
+  - `dist[][]`: a list of weighted distance for all pairs
+    - the values are based on n iterations (when considering a possible negative weight cycle)
+  - `iter[][][]`: a 3d list of each step: iter[n][u][v] is the shortest distance from u to v with the first n nodes
+- Runtime:
+  - O(n^3)
+
+
+
+## Kruskal's 
+
+- input:
+  - A connected undirected graph in adjacency list
+  - A list of edge weights
+- output:
+  - `edges[]`: a list of n-1 edges that represent the MST
+- runtime:
+  - O(mlogn)
+
+
+
+## Prim's
+- input:
+  - A connected undirected graph in adjacency list
+  - A list of edge weights
+- output:
+  - `prev[]`: a list of parent vertex to represnt the MST
+- runtime:
+  - O(mlogn)
+
+
+## Ford-Fulkerson (FF)
+
+- input:
+  - A connected directed graph in adjacency list
+  - a list of edge capacities in positive integers
+  - a starting source vertex
+  - a terminating sink vertex
+- output:
+  - `flow[]`: a list of flows indexed by the edges 
+  - `C`: the value of the maximal flow
+- Runtime:
+  - O(mC)
+
+## Edmonds-Karp (EK) 
+
+- input:
+  - A connected directed graph in adjacency list
+  - a list of edge capacities in positive numbers
+  - a starting source vertex
+  - a terminating sink vertex
+- output:
+  - `flow[]`: a list of flows indexed by the edges 
+  - `C`: the value of the maximal flow
+- Runtime:
+  - O(m^2n)
+
+
+## 2-SAT 
+
+- input:
+  - A boolean formula backed by a list of n variables
+- output:
+  - `assignments[]`: a list indexable by the varaibles that back the formula
+  - all outputs from scc run
+- runtime:
+  - O(n+m)
+
+
+
+
+## Some exercises
+

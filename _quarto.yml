@@ -63,6 +63,7 @@ book:
         - contents/dp/dp.qmd
     - part: contents/gr/intro.qmd
       chapters:
+        - contents/gr/basic.qmd
         - contents/gr/dfs.qmd
         - contents/gr/shortest.qmd
         - contents/gr/mst.qmd
