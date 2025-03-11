@@ -67,12 +67,11 @@ book:
         - contents/gr/dfs.qmd
         - contents/gr/shortest.qmd
         - contents/gr/mst.qmd
-    - part: "MF"
-      chapters: 
-        - contents/mf/mf1.qmd
-        - contents/mf/ff.qmd
-        - contents/mf/ek.qmd
-    # - part: "Part II: R"
+        - contents/gr/mf.qmd
+    - part: "NP"
+      chapters:        
+        - contents/np/basic.qmd
+      # - part: "Part II: R"
     #   chapters:
     #     - contents/rconcepts/r.qmd
     # - part: "Part III: Tools"
