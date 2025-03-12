@@ -1,2 +1,264 @@
 # NP
 
+## Computational complexity
+
+NP = class of all search problems
+
+P = class of search problmes that are solvable in polynomial time
+
+by definition $p\subset NP$
+
+NP: verify solutions
+P: generate solutions
+
+
+
+![](assests/img/20250311114126.png)
+
+
+::: {#def-}
+## Rough definition of Search problems
+problem where we can efficiently verify solutions. Efficiently means in polynomial time.
+:::
+
+
+::: {#def-}
+## Rough definition of Search problems
+problem where we can efficiently verify solutions. Efficiently means in polynomial time.
+:::
+
+
+
+::: {#def-}
+## formal definition of Search problems
+Form: Given instance I (an input of the problem)
+
+- find a solution S for I if one exists
+- output NO if I has no solutions
+
+requirement:
+
+- if given an instance I and solution S, then we can verify that S is a solution to I in polynomial time in |I|.
+:::
+
+
+## SAT
+
+input: boolean formula f in CND with n variables and m clauses
+output: satisfying or no
+
+runtime: O(mn)
+
+In the worst case the size of a clause if n. So the runtime is O(mn)
+
+
+## k-colorings problem
+input: undirected G and integer k
+output: assign each vertex a color so adjacent vertices get different colors
+
+to show it is NP, we just need to compute the runtime of verification
+
+Given G and a coloring, how to check that for each edge the colors of two vertices are different?
+
+runtime: O(m) go through each edge, check the color of two vertices
+
+
+## MST
+
+Kulskra's/Prim's: O(mlog n)
+
+NP:
+
+- Run BFS/DFS to check T is a tree
+- Run Kruskal's or prim's to find the minimal weight
+
+O(mlog n)
+
+P: easy
+
+
+## Knapsack problem
+
+input: n objets and integer values , capacity B
+output: subset of objects with total weight <=B and maximize toatl value
+
+knapsack: runtime: 
+
+DP algorithm: O(nB) this is an exponential algorithm
+
+for knapsack, to verify the answer to run DP algorithm it is exponential
+
+- verify sum wi <=B: O(n)
+- verify maximal: O(nB) exponenetial
+
+so it is not directly in NP.
+
+as far as we know right now, knapsack is not known to be in NP.
+
+we still need to prove it can not be in NP.
+
+
+## knapsack search
+- input: weights, values, capacity B, goal g
+- output: 
+  - sum wi <=B
+  - sum vi >=g
+
+runtime: given w, v, B, g 
+
+- check sum wi<=B
+- check sum vi>=g
+
+assume W=sum wi, V=sum vi
+
+adding two wi is 2 log operations (because we add bits)
+so sum wi is O(nlogW), and sum vi is O(nlogV)
+
+Both are polynomial in logW and logV (input sizes)
+
+so knapsack search is in NP.
+
+
+New strategy:
+1. if ks is P
+2. then finding the maximal possible value V
+3. run binary search on V until ks has solutions
+4. binary search O(logV)
+5. then knapsack can be solved by O(ks runtime)*O(logV) which is still polynomial
+
+
+
+
+## P vs NP
+
+NP = all search problmes
+P = search problems that can be solved in poly time
+
+P<= NP
+
+is P=NP?
+
+![](assests/img/20250311114444.png)
+
+
+NP-complete problems: the hardest problems in NP
+
+reduction: transfer a problem to a harder problem
+
+
+## SAT is NP-complete
+
+- SAT in NP
+- if we can solve SAT in poly time, the nwe can solve every problem in NP in poly time
+
+key: all problems can be reduced to SAT
+
+NP-complete:Characteristics:
+
+- Decision problems(or search): The output is either "yes" or "no" for any input
+- Polynomial time verifiable: The answer can be verified in polynomial time 
+- Polynomial time reducible: Any other NP problem can be reduced to it in polynomial time 
+
+NP-complete:
+- any NP can be polynomial reduced to NP-complete
+- NP-complete has to be in NP
+
+NP hard:
+- any NP can be polynomial reduced to NP-hard
+- NP-hard doens't have to be in NP
+
+
+
+## reduction
+
+### coloring -> SAT
+
+notation: A->B or A<=B: A is easier than B
+
+if we can solve B in poly, we can use that algorithm to solve A in poly
+
+KEY: treat B as a black box
+
+
+![](assests/img/20250311115750.png)
+
+
+need f and h: how to translate between the two problems:
+- input for colorings->input for SAT
+- solution for SAT->solution for coloring
+
+
+![](assests/img/20250311121203.png)
+
+simpler approach:
+
+asuume SAT in NP: we could just show SAT->B to show that B is NP-complete
+
+
+
+### 3-SAT
+
+
+::: {#thm-}
+## Cook-Levin Theorem ('71)
+SAT is NP-complete.
+:::
+
+
+::: {#thm-}
+## Karp '72
+21 other problems are NP-complete.
+:::
+
+
+- input: f in CNF, has <=3 literals
+- output: satisfying assignment or NO
+
+1. 3SAT in NP
+2. SAT->3SAT, thus for all A in Np, A->3SAT
+
+Given 3SAT input f, T/F assignment for x1, xn
+
+for each cluase C, O(1) time to check at least one literal in C is satisfying. 
+so total O(m) total time
+
+input f for SAT
+
+![](assests/img/20250311160158.png)
+
+
+![](assests/img/20250311161234.png)
+
+![](assests/img/20250311161709.png)
+
+need to prove C=> c' and C'=> C
+
+
+## Exerciese
+
+### AtMost-3SAT
+
+Consider the following variant of 3SAT, we called here AtMost-3SAT:
+
+**Input**: a boolean formula in conjunctive normal form (CNF) such that each clause has at most three literals, and each variable appears at most three times.
+
+**Output**: a true assignment of the variables, or returns NO if such assignment does not exist.
+
+Show that  AtMost-3SAT is NP-complete by reducing from 3SAT.
+
+
+\subsection{NP-Complete}
+Let the number of literals be n. Assume that there is an assignment for each literals. We need to verify whether the assignment satisfies the given CNF. For each clause there are at most 3 literals. So it takes O(1) to verify each clause. Since each variable appears at most three times, the number of clauses is at most 3n, which is O(n). So it takes at most O(n) runtime to verify whether a given assignment satisfies the CNF. Therefore AtMost-3SAT is an NP problem.
+
+\subsection{Reduction}
+
+Now we want to show that 3SAT can be reduced to AtMost-3SAT.
+
+\subsection{Input transformation}
+Given a 3SAT formula f, it is a formula with
+
+
+\subsection{Output transformation}
+
+
+\subsection{Correctness Proof}
