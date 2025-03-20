@@ -262,3 +262,44 @@ Given a 3SAT formula f, it is a formula with
 
 
 \subsection{Correctness Proof}
+
+
+
+
+
+
+
+
+
+
+
+
+## SAT
+## 3SAT
+## IS
+## Clique
+## Vertex Cover
+## Subset-sum
+
+
+::: {.callout-note}
+## Subset-sum
+- **input**: Positive integers $a_1$, ... $a_n$ and $t$
+- **ouput**: subset $S$ of $\{1,...,n\} where $\sum a_i=t$ if such a subset exists, or NO otherwise.
+:::
+
+### Dynamic programming
+1. Let D(i, t) be the subproblem that using $\{1,2,...,i\}$ to bet t.
+2. Base case: D(0,t)=D(i, 0)={} (?)
+3. Induction: D(i+1, t)=D(i,t) or  D(i+1,t)=D(i,t-i-1) U {i+1}
+4. The runtime is O(nt).
+
+
+### NP-C
+1. Assume we are given $\{a_1, ..., a_n\}$ and $t$, and a subset $S$. To check whether it is a solution, we just need to check $\sum_a_i\in S a_i=t$, which is polynomial. So the problem is NP.
+
+
+
+
+## Knapsack-search
+

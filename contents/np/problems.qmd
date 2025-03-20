@@ -57,3 +57,41 @@ vertex cover S of size <=b
 ## subset-sum
 knapsack is NP-C.
 
+
+
+
+
+
+Suggested reading:
+
+Chapter 8 in [DPV].
+
+[DPV] Practice Problems. (do not turn in)
+
+[DPV] Problem 8.9 (Hitting Set)
+
+[DPV] Problem 8.10 (a) (Subgraph isomorphism. You are welcome to try them all)
+
+[DPV] Problem 8.19 (Kite)
+
+Graded problem.
+
+Consider the Knapsack-search problem.
+Input: integer weights w1,w2,...wn and integer values v1, v2, ..., vn for n items. We are also given a weight capacity W and a goal g.
+Output: a subset of items whose total weight is at most W and whose total value is at least g, or report no if such a set does not exist.
+
+Prove that Knapsack-search is NP-complete.
+
+
+
+::: {.proof}
+Assume that we are given a solution that there are i1 item1, i2 item2, etc.. To check whether it is a solution, we need to check:
+
+- i1w1+i2w2+...+inwn<=W
+- i1v1+i2v2+...+invn>=g
+
+Since all the computations are just linear combinations of numbers and comparing two numbers, it is polynomial to check a solution. Therefore Knapsack-serach is NP problem.
+
+
+
+:::
