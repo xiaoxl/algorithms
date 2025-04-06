@@ -13,6 +13,12 @@ P: generate solutions
 
 
 
+
+
+
+
+
+
 ![](assests/img/20250311114126.png)
 
 
@@ -21,11 +27,6 @@ P: generate solutions
 problem where we can efficiently verify solutions. Efficiently means in polynomial time.
 :::
 
-
-::: {#def-}
-## Rough definition of Search problems
-problem where we can efficiently verify solutions. Efficiently means in polynomial time.
-:::
 
 
 
@@ -40,6 +41,17 @@ requirement:
 
 - if given an instance I and solution S, then we can verify that S is a solution to I in polynomial time in |I|.
 :::
+
+
+
+- P=polynomial time
+- NP=polynomial time with a nondeterministic machine
+
+
+
+
+
+
 
 
 ## SAT

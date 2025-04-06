@@ -1,0 +1,183 @@
+# Linear Programming
+
+## max-flow
+
+input: directed G with c LP: m variables: fe for every e obj function: max sum fsv constraints: 0\<=fe\<=ce, and inflow=outflow
+
+obj and constraints are all linear, so it is linear programming
+
+feasible region feasible region is convex
+
+## simple LP
+
+all inequality has to be strict
+
+if x is unconstrained
+
+we could add x+ and x- two variables
+
+maximize C\^TX constriant: AX\<=b X\>=0
+
+n variables, n+m constriants
+
+feasible region: intersection of n+m half spaces=convex plyhedron
+
+vertices=n constraints with =, m constraint with \<=
+
+vertices: worst case: C\^n\_{n+m}
+
+each vertex has at most nm neibors
+
+![](assests/img/20250321135613.png)
+
+simplex:
+
+start at x=0 look for neighboring vertex with higher objective value, and move there and repeat if no found, it is the global maximal
+
+![](assests/img/20250321140028.png)
+
+![](assests/img/20250321140518.png)
+
+![](assests/img/20250321140751.png)
+
+feasible problem is a LP problem
+
+## dual
+
+n var, m constraints max CTx, Ax\<=b, x\>=0
+
+dual m var, n constraints min bTy, ATy\>=c, y\>=0
+
+primal: max cTx, Ax\<=b, x\>=0
+
+dual min bTy, ATy\>=c, y\>=0
+
+-\> max -bTy, -ATy\<=-c, y\>=0
+
+dual of dual
+
+# min -cTz, -Az\>=-b, z\>=0
+
+max CTz, Az\<=b, z\>=0
+
+dual of dual is equivalent to the primal
+
+::: {#thm-}
+## Weak duality Theorem
+
+Feasible x for primal LP, Feasible y for dual LP
+
+CTx\<=bTy
+:::
+
+::: {#cor-}
+corollory: if x, y such that CTX=BTy, then x and y are optimal
+:::
+
+<div>
+
+if primal is unbounded, the dual is infeasible.
+
+if dual is unbounded, then primal is infeasible.
+
+</div>
+
+if dual LP is infeasible, then primal is unbounded, or infeasible if dual and primal are both feasible: then primal is unbounded.
+
+feasible:
+
+1.  add z
+2.  maximize z such that Ax+z\<=b to see if it is \>0
+
+primal is feasible:\>dual is either unbounded or infeasible
+
+if dual is feasible, it has to be unbounded.
+
+<div>
+
+## Strong duality theorem
+
+Thm:
+
+primal LP is feasible and bounded iff dual is feasible and bounded
+
+primal has optimal x\* iff dual has optimal y\*
+
+</div>
+
+max-flow=min st-cut
+
+## Linear programming
+
+### Standard form (Cannonical form)
+
+-   primal
+    -   $\max c^Tx$
+    -   $Ax\leq b$, $x\geq 0$
+-   dual
+    -   $\min b^Ty$
+    -   $A^Ty\geq c$, $y\geq 0$.
+
+| **primal**  | **dual**     |
+|-------------|--------------|
+| $\max c^Tx$ | $\min b^Ty$  |
+| $Ax\leq b$  | $A^Ty\geq c$ |
+| $x\geq 0$   | $y\geq 0$    |
+
+### Duality
+
+### boundedness and feasibility
+
+1. feasibility is first
+2. dual is an upper limit to the primal. so dual feasible=primal bounded
+3. unboundedness -> dual infeasibility
+
+1. inf, f&u, f&b
+2. inf->inf, or f&u
+3. f&u->inf
+4. f&b->f*b
+
+inf <-> inf
+inf <-> f&u
+f&b <-> f&b
+
+
+
+### Duality theorem
+
+cor: if x and y cx=by, then both are optimal
+cor2: f&u->inf
+
+
+### Checking feasible
+
+feasibility is only related to the constraints
+
+add a z to the constraints
+question: can z be positive
+
+LP: max z
+Ax+z<=b, x>=0
+
+this is feasible
+
+Q: whether z is positive
+
+
+
+
+
+
+
+### checking unbounded
+
+Primal is feasible, 
+
+- dual is infeasible: primal is f&u
+- dual is feasible: primal is f&b
+- 
+
+
+
+max-flow dual is min st-cut
+

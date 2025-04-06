@@ -1,39 +1,3 @@
-# independent set
-
-def: vertices are not connnected directly by edges from G
-
-input: undirected G
-output: indepedent set S with maximal size
-
-not NP?
-
-
-for all optimization problem: 
-1. to check whether it is NP, we need be able to verify something is maximal, which in general is impossible.
-2. In general a way to verify something is maximal is to construct a maximal answer, and compare the size. 
-3. Using this idea, if this problem is NP, it should also be in P.
-4. So unless NP=P, optimization problems are hard to be NP.
-
-
-
-## search problem
-
-input: undirected G and goal g
-output: independent set S with size >=g
-
-
-Thm: this is NP-C.
-
-proof:
-
-1. NP: easy
-2. 3SAT->IS
-
-
-is->max-is
-
-so max-is is NP-hard: any NP can be reduced to it but not necessarily in NP
-
 
 
 
@@ -95,3 +59,184 @@ Since all the computations are just linear combinations of numbers and comparing
 
 
 :::
+
+
+
+
+
+
+
+
+
+## Black box
+
+### SAT
+
+- **input**: m clauses which consists of literals
+- **output**: True if there is a satisfying assignment, False if not.
+
+### 3SAT
+
+- **input**: m clauses which consists of at most 3 literals each
+- **output**: True if there is a satisfying assignment, False if not.
+
+SAT->3SAT:
+
+a1 v a2 v a3 v ... v ak <-> (a1 v a2 v y1) n (y1b v a3 v y2) n (y2b v a4 v y3) n ... n (y{k-3}b v a{k-1} v ak)
+
+
+### Independent Set (IS)
+def: vertices are not connnected directly by edges from G
+
+input: undirected G output: indepedent set S with maximal size
+
+
+- **input**: undirected G
+- **output**: indepedent set S with maximal size
+
+- independent set
+
+def: vertices are not connnected directly by edges from G
+
+input: undirected G
+output: indepedent set S with maximal size
+
+not NP?
+
+
+for all optimization problem: 
+1. to check whether it is NP, we need be able to verify something is maximal, which in general is impossible.
+2. In general a way to verify something is maximal is to construct a maximal answer, and compare the size. 
+3. Using this idea, if this problem is NP, it should also be in P.
+4. So unless NP=P, optimization problems are hard to be NP.
+
+
+
+- search problem
+
+input: undirected G and goal g
+output: independent set S with size >=g
+
+
+Thm: this is NP-C.
+
+proof:
+
+1. NP: easy
+2. 3SAT->IS (g=#clause)
+
+IS g is the number of clauses. 
+
+connect all nodes that cannot be true simutanously, like x and xb
+
+
+
+
+
+is->max-is
+
+so max-is is NP-hard: any NP can be reduced to it but not necessarily in NP
+
+
+
+
+### Vertex Cover (VC)
+
+- **input**: G, k
+- **output**: a subset C of at most k vertices that every edge has at least one endpoint in C
+
+1. VC may have edges inside
+2. V-C has to be independent. Otherwise if there is an edge in V-C, this edge doesn't have endpoints in C
+3. a VC with at most k vertices is equivalent to an IS with at least v-k vertices.
+
+
+### Clique
+
+- **input**: G, k
+- **output**: a subset C of at least k vertices that every vertices is connected by an edge
+
+1. Clique has to be connected (by the graph edge)
+2. a clique is an IS in the completement graph
+3. a Clique with at least k vertices is equivalent to an IS with at least k vertices.
+
+### 3D Matching
+
+- **input**: XxYxZ
+- **output**: a subset M such that each element in X, Y or Z appears in at most one element of M
+
+
+
+
+### Subset Sum (SSS)
+
+- **input**: a set of integers S and a target integer T
+- **output**: a subset of integers in S whose sum is T.
+
+
+
+
+3sat->SSS->knapsack-search
+
+
+
+### Rudrata (s, t)-Path
+
+
+- **input**: a graph
+- **output**: a path that passes through each vertex exactly once which starts from s and ends at t.
+
+
+
+### Rudrata Cycle
+
+
+- **input**: a graph
+- **output**: a cycle that passes through each vertex exactly once
+
+
+RP->RC
+
+
+
+
+### Zero-One Equations (ZOE)
+
+- **input**: AX=1, where A is either 1 or 0
+- **output**: an integer solution
+
+
+
+
+### Integer Linear Programming (ILP)
+
+- **input**: AX<=b, where A, b are all integers
+- **output**: an non-negative integer solution
+
+
+ZOE->ILP
+
+
+### Knapsack
+
+
+
+### Traveling Salesman Problem (TSP)
+
+- **input**: A mstrix of distances; a budget b
+- **output**: A tour which passes throguh all the cities and has length <=b, if such a tour exists
+
+### Traveling Salesman Problem optimization version (TSP-OPT)
+
+- **input**: A mstrix of distances
+- **output**: A shortest tour which passes throguh all the cities 
+
+
+
+
+
+
+
+- search version: find the optimal one
+- decision version: find the one with condidtions
+
+knapsack-decision -> knapsack

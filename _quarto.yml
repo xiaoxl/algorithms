@@ -72,6 +72,7 @@ book:
       chapters:        
         - contents/np/basic.qmd
         - contents/np/problems.qmd
+        - contents/np/lp.qmd
       # - part: "Part II: R"
     #   chapters:
     #     - contents/rconcepts/r.qmd
